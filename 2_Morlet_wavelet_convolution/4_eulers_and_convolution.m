@@ -98,12 +98,12 @@ figure(4), clf
 
 % setup the time course plot
 subplot(212)
-h = plot(EEG.times,abs(as),'k','linew',2);
-set(gca,'xlim',EEG.times([1 end]),'ylim',[min(abs(as)) max(abs(as)) ])
+h = plot(EEG.times,real(as),'k','linew',2);
+set(gca,'xlim',EEG.times([1 end]),'ylim',[min(real(as)) max(real(as)) ])
 xlabel('Time (ms)'), ylabel('Amplitude (\muV)')
 
 
-for ti=1:2:EEG.pnts
+for ti=1:5:EEG.pnts
     
     % draw complex values in polar space
     subplot(211)
@@ -112,7 +112,7 @@ for ti=1:2:EEG.pnts
     text(-.75,0,[ num2str(round(EEG.times(ti))) ' ms' ]), hold off
     
     % now show in 'linear' plot
-    set(h,'XData',EEG.times(max(1,ti-100):ti),'YData',abs(as(max(1,ti-100):ti)))
+    set(h,'XData',EEG.times(max(1,ti-100):ti),'YData',real(as(max(1,ti-100):ti)))
     
     drawnow
     pause(.1)
