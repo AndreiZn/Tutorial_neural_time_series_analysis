@@ -32,7 +32,7 @@ ylabel('Phase (rad.)')
 
 subplot(313)
 freqslide = srate*diff(unwrap(angle(hilsig)))/(2*pi);
-plot(time,freqslide)
+plot(time(1:end-1),freqslide)
 hold on
 plot(time,freqTS,'r')
 set(gca,'ylim',[0 15])
