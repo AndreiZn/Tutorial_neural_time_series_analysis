@@ -44,7 +44,7 @@ hz    = linspace(0,srate/2,floor(nPnts/2)+1);
 sinewave = 2*sin(2*pi*freq*time);
 
 % step 1: FFT and divide by N
-sinewaveX = fft(sinewave)/nPnts; % divide by 
+sinewaveX = fft(sinewave, nPnts)/nPnts; % divide by 
 
 % step 2: multiply positive-frequency coefficients by 2
 posfrex  = 2:floor(nPnts/2);
