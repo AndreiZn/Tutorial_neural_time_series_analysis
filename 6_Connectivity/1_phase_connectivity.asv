@@ -211,7 +211,7 @@ xlabel('Time (ms)'), ylabel('ISPC')
 
 % ISPC over time
 subplot(212)
-ispc_time = squeeze( abs(mean(exp(1i*diff(phase_data,[],1)),2)));
+ispc_time = squeeze( abs(mean(exp(1i*diff(phase_data,[],1)
 plot(1:EEG.trials,ispc_time)
 xlabel('Trials'), ylabel('ISPC')
 
