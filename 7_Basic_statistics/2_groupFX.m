@@ -4,7 +4,7 @@
 clear, close all
 
 % Get a list of data files ready to be analyzed
-sublist = dir('*tf.mat');
+sublist = dir('s_tf/*tf.mat');
 sublist = {sublist.name};
 
 %% load in level-1 data
