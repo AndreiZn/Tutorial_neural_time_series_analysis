@@ -24,7 +24,7 @@ max_freq = 100;
 num_frex = 50;
 
 % define frequency and time ranges
-frex = linspace(
+frex = linspace(min_freq, max_freq, num_frex);
 times2saveidx = dsearchn(timevec',times2save');
 
 % parameters for complex Morlet wavelets
@@ -41,7 +41,7 @@ nConv = nWave+nData-1;
 % and create wavelets
 cmwX = zeros(num_frex,nConv);
 for fi=1:num_frex
-    s       =  % frequency-normalized width of Gaussian
+    s       =  nCycles(fi) / (2*pi*frex(fi)); % frequency-normalized width of Gaussian
     cmw      = exp(1i*2*pi*frex(fi).*wavtime) .* exp( (-wavtime.^2) ./ (2*s^2) );
     tempX     = fft(cmw,nConv);
     cmwX(fi,:) = tempX ./ max(tempX);
@@ -67,7 +67,7 @@ for fi=1:num_frex
     
     % power on all trials from channel "1"
     % only from times2saveidx!
-    tf(1,fi,:,:) = 
+    tf(1,fi,:,:) = abs(as1(times2saveidx,:)).^2;
     
     
     % run convolution
@@ -77,7 +77,7 @@ for fi=1:num_frex
     
     % power on all trials from channel "2"
     % only from times2saveidx!
-    tf(2,fi,:,:) = 
+    tf(2,fi,:,:) = abs(as2(times2saveidx,:)).^2;
 end
 
 % for convenience, compute the difference in power between the two channels
